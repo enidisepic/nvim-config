@@ -115,6 +115,12 @@ function M.setup()
         require('mason-lspconfig').setup({
           ensure_installed = config.mason_lsps
         })
+
+        if #config.pylsp_plugins > 0 then
+          for _, plugin in ipairs(config.pylsp_plugins) do
+            vim.api.nvim_command('PylspInstall ' .. plugin)
+          end
+        end
       end
     })
 
@@ -178,6 +184,10 @@ function M.setup()
               vim.fn['vsnip#anonymous'](args.body)
             end
           },
+          window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered()
+          },
           mapping = {
             ['<PageUp>'] = cmp.mapping.scroll_docs(-4),
             ['<PageDown>'] = cmp.mapping.scroll_docs(4),
@@ -215,6 +225,9 @@ function M.setup()
                   plugins = {
                     pycodestyle = {
                       enabled = false
+                    },
+                    pylsp_mypy = {
+                      enabled = true
                     }
                   }
                 }

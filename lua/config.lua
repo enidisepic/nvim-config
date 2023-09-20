@@ -27,12 +27,17 @@ local M = {
     'python-lsp-server',
     'prettier',
     'hadolint',
-    'markdownlint'
+    'markdownlint',
+    'isort'
   }, -- Which mason packages to install
 
   mason_lsps = {
     'pylsp'
   }, -- Which mason LSPs to use (needed to use the mason LSP names instead of package names)
+
+  pylsp_plugins = {
+    'pylsp-mypy'
+  }, -- Which PyLSP plugins to install
 
   nvim_lint_linters = {
     dockerfile = { 'hadolint' },
@@ -50,7 +55,8 @@ local M = {
 
   other_formatters = formatter_installed and {
     python = {
-      require('formatter.filetypes.python').black
+      require('formatter.filetypes.python').black,
+      require('formatter.filetypes.python').isort
     },
     ['*'] = {
       require('formatter.filetypes.any').remove_trailing_whitespace
