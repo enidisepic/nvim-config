@@ -75,6 +75,9 @@ function M.setup()
           update_focused_file = {
             enable = true,
             update_root = true
+          },
+          filters = {
+            git_ignored = false
           }
         })
 
