@@ -198,9 +198,24 @@ function M.setup()
               dynamicRegistration = false
             }
           }
-          lspconfig[lsp].setup({
-            capabilities = capabilities
-          })
+          if lsp ~= 'pylsp' then
+            lspconfig[lsp].setup({
+              capabilities = capabilities
+            })
+          else
+            lspconfig[lsp].setup({
+              capabilities = capabilities,
+              settings = {
+                pylsp = {
+                  plugins = {
+                    pycodestyle = {
+                      enabled = false
+                    }
+                  }
+                }
+              }
+            })
+          end
         end
       end
     })
