@@ -1,5 +1,7 @@
 # nvim-config
 
+![Image of the config in action](config.png)
+
 This is my personal NeoVim config.
 
 It includes essential plugins listed here and some personal preferences and niceties for macOS.
@@ -45,3 +47,4 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - [nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker): pick a window
 - [wakatime](https://github.com/wakatime/vim-wakatime): track coding time (optional)
 - [FTerm](https://github.com/numToStr/FTerm.nvim): floating terminal with persistent session
+- [transparent](https://github.com/xiyaowong/transparent.nvim): make nvim transparent

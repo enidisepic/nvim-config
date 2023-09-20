@@ -31,7 +31,9 @@ function M.setup()
       as = 'catppuccin',
       config = function()
         require('catppuccin').setup({
-          flavour = config.catppuccin_flavor
+          flavour = config.catppuccin_flavor,
+          transparent_background = config.transparent,
+
         })
 
         vim.cmd('colorscheme catppuccin')
