@@ -115,12 +115,6 @@ function M.setup()
         require('mason-lspconfig').setup({
           ensure_installed = config.mason_lsps
         })
-
-        if #config.pylsp_plugins > 0 then
-          for _, plugin in ipairs(config.pylsp_plugins) do
-            vim.api.nvim_command('PylspInstall ' .. plugin)
-          end
-        end
       end
     })
 
@@ -218,6 +212,12 @@ function M.setup()
               capabilities = capabilities
             })
           else
+            if #config.pylsp_plugins > 0 then
+              for _, plugin in ipairs(config.pylsp_plugins) do
+                vim.api.nvim_command('PylspInstall ' .. plugin)
+              end
+            end
+
             lspconfig[lsp].setup({
               capabilities = capabilities,
               settings = {
