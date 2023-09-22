@@ -15,7 +15,8 @@ with [Zsh](https://www.zsh.org/) and [Oh My Zsh](https://ohmyz.sh/).
 2. Configure it to your likings (see below)
 3. Open nvim and run `:PackerSync`. This may fail, if it does repeat until it doesn't. If you get messages from
    TreeSitter or Mason let them finish.
-4. Enjoy :)
+4. Restart nvim and run `:PylspInstall pylsp-mypy` (or other PyLSP plugins depending on your needs)
+5. Enjoy :)
 
 ## Config
 

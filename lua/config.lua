@@ -35,10 +35,6 @@ local M = {
     'pylsp'
   }, -- Which mason LSPs to use (needed to use the mason LSP names instead of package names)
 
-  pylsp_plugins = {
-    'pylsp-mypy'
-  }, -- Which PyLSP plugins to install
-
   nvim_lint_linters = {
     dockerfile = { 'hadolint' },
     markdown = { 'markdownlint' }
