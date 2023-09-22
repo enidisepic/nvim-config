@@ -24,7 +24,7 @@ local M = {
 
   mason_tools = {
     'black',
-    'python-lsp-server',
+    'pyright',
     'prettier',
     'hadolint',
     'markdownlint',
@@ -32,7 +32,7 @@ local M = {
   }, -- Which mason packages to install
 
   mason_lsps = {
-    'pylsp'
+    'pyright'
   }, -- Which mason LSPs to use (needed to use the mason LSP names instead of package names)
 
   nvim_lint_linters = {
@@ -60,7 +60,7 @@ local M = {
   } or {}, -- Other formatters for different file types
 
   lsps = {
-    'pylsp'
+    'jedi_language_server'
   }, -- LSPs to add to the native LSP client (need to be added to mason_tools and/or mason_lsps)
 
   use_wakatime = true, -- If you want to use Wakatime

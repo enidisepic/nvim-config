@@ -15,8 +15,7 @@ with [Zsh](https://www.zsh.org/) and [Oh My Zsh](https://ohmyz.sh/).
 2. Configure it to your likings (see below)
 3. Open nvim and run `:PackerSync`. This may fail, if it does repeat until it doesn't. If you get messages from
    TreeSitter or Mason let them finish.
-4. Restart nvim and run `:PylspInstall pylsp-mypy` (or other PyLSP plugins depending on your needs)
-5. Enjoy :)
+4. Enjoy :)
 
 ## Config
 
@@ -49,3 +48,12 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - [wakatime](https://github.com/wakatime/vim-wakatime): track coding time (optional)
 - [FTerm](https://github.com/numToStr/FTerm.nvim): floating terminal with persistent session
 - [transparent](https://github.com/xiyaowong/transparent.nvim): make nvim transparent
+
+## Other
+
+- PyRight as Python LSP
+- isort for sorting Python imports
+- Black for formatting Python code
+- Prettier for formatting JS/TS/related
+- hadolint for linting Dockerfiles
+- markdownlint for linting Markdown files
