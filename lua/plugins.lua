@@ -89,14 +89,6 @@ function M.setup()
         )
       end
     })
-    use({
-      'luochen1990/rainbow',
-      config = function()
-        -- Fix for treesitter
-        vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
-        vim.g.rainbow_active = true
-      end
-    })
 
     -- Mason
     use('williamboman/mason.nvim')
@@ -144,11 +136,22 @@ function M.setup()
     })
     use({
       'nvim-treesitter/nvim-treesitter',
+      requires = 'p00f/nvim-ts-rainbow',
       config = function()
+        local catppuccin_colors = require('catppuccin.palettes').get_palette(config.catppuccin_flavor)
         require('nvim-treesitter.configs').setup({
           ensure_installed = 'all',
           highlight = {
             enable = true
+          },
+          rainbow = {
+            enable = true,
+            colors = {
+              catppuccin_colors.teal,
+              catppuccin_colors.yellow,
+              catppuccin_colors.pink,
+              catppuccin_colors.green
+            }
           }
         })
 

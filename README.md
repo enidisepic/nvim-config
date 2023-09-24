@@ -32,7 +32,6 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - [catppuccin](https://github.com/catppuccin/nvim): my preferred theme (Frappé flavor)
 - [lualine](https://github.com/nvim-lualine/lualine.nvim): a nice status line at the bottom of thewindow
 - [virt-column](https://github.com/lukas-reineke/virt-column.nvim): virtual column at width 120
-- [rainbow](https://github.com/luochen1990/rainbow): rainbow colored matching braces
 - [mason](https://github.com/williamboman/mason.nvim): package manager for anything not a plugin
 - [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer): automatically install mason packages
 - [mason-lspconfig](https://github.com/williamboman/nvim-lspconfig): nvim-lspconfig compatibility for mason
@@ -53,6 +52,7 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - [wakatime](https://github.com/wakatime/vim-wakatime): track coding time (optional)
 - [FTerm](https://github.com/numToStr/FTerm.nvim): floating terminal with persistent session
 - [presence](https://github.com/andweeb/presence.nvim): Discord RPC for nvim
+- [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow): rainbow braces for nvim with treesitter
 
 ## Other
 
