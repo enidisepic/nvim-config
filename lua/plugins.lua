@@ -92,6 +92,8 @@ function M.setup()
     use({
       'luochen1990/rainbow',
       config = function()
+        -- Fix for treesitter
+        vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
         vim.g.rainbow_active = true
       end
     })
@@ -313,6 +315,14 @@ function M.setup()
       use('wakatime/vim-wakatime')
     end
     use('numToStr/FTerm.nvim')
+    if config.discord_rpc then
+      use({
+        'andweeb/presence.nvim',
+        config = function()
+          require('presence').setup()
+        end
+      })
+    end
   end)
 
   if first_packer_run then

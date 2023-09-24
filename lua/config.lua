@@ -64,7 +64,8 @@ local M = {
   }, -- LSPs to add to the native LSP client (need to be added to mason_tools and/or mason_lsps)
 
   use_wakatime = true, -- If you want to use Wakatime
-  transparent = true -- Make nvim transparent (for custom background images and the likes)
+  transparent = true, -- Make nvim transparent (for custom background images and the likes)
+  discord_rpc = true -- Use Discord RPC (game status)?
 }
 
 return M

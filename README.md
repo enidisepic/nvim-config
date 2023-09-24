@@ -6,6 +6,11 @@ This is my personal NeoVim config.
 
 It includes essential plugins listed here and some personal preferences and niceties for macOS.
 
+## Requirements
+
+To use this config you will need Python and Node.js installed. Support is only guaranteed for the latest stable versions
+of either installed using `pyenv` and `fnm` respectively.
+
 ## Usage
 
 This config is designed for macOS with iTerm 2 and the Terminal.app compatible keymap. Furthermore, it is only tested
@@ -47,7 +52,7 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - [nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker): pick a window
 - [wakatime](https://github.com/wakatime/vim-wakatime): track coding time (optional)
 - [FTerm](https://github.com/numToStr/FTerm.nvim): floating terminal with persistent session
-- [transparent](https://github.com/xiyaowong/transparent.nvim): make nvim transparent
+- [presence](https://github.com/andweeb/presence.nvim): Discord RPC for nvim
 
 ## Other
 
