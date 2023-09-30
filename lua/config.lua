@@ -28,11 +28,16 @@ local M = {
     'prettier',
     'hadolint',
     'markdownlint',
-    'isort'
+    'isort',
+    'rust_analyzer',
+    'rustfmt',
+    'typescript-language-server'
   }, -- Which mason packages to install
 
   mason_lsps = {
-    'pyright'
+    'pyright',
+    'rust_analyzer',
+    'tsserver'
   }, -- Which mason LSPs to use (needed to use the mason LSP names instead of package names)
 
   nvim_lint_linters = {
@@ -54,13 +59,17 @@ local M = {
       require('formatter.filetypes.python').black,
       require('formatter.filetypes.python').isort
     },
+    rust = {
+      require('formatter.filetypes.rust').rustfmt
+    },
     ['*'] = {
       require('formatter.filetypes.any').remove_trailing_whitespace
     }
   } or {}, -- Other formatters for different file types
 
   lsps = {
-    'jedi_language_server'
+    'pyright',
+    'rust_analyzer'
   }, -- LSPs to add to the native LSP client (need to be added to mason_tools and/or mason_lsps)
 
   use_wakatime = true, -- If you want to use Wakatime

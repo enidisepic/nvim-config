@@ -1,6 +1,6 @@
 # nvim-config
 
-![Image of the config in action](config.png)
+![Image of the config in action](preview.png)
 
 This is my personal NeoVim config.
 
@@ -53,12 +53,16 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - [FTerm](https://github.com/numToStr/FTerm.nvim): floating terminal with persistent session
 - [presence](https://github.com/andweeb/presence.nvim): Discord RPC for nvim
 - [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow): rainbow braces for nvim with treesitter
+- [noice](https://github.com/folke/noice.nvim): better UI for messages, cmdline and LSP signatures
 
 ## Other
 
 - PyRight as Python LSP
+- rust_analyzer as Rust LSP
+- tsserver as TypeScript LSP
 - isort for sorting Python imports
 - Black for formatting Python code
 - Prettier for formatting JS/TS/related
+- rustfmt for formatting Rust code
 - hadolint for linting Dockerfiles
 - markdownlint for linting Markdown files

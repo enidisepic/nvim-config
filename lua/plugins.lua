@@ -32,8 +32,7 @@ function M.setup()
       config = function()
         require('catppuccin').setup({
           flavour = config.catppuccin_flavor,
-          transparent_background = config.transparent,
-
+          transparent_background = config.transparent
         })
 
         vim.cmd('colorscheme catppuccin')
@@ -139,6 +138,7 @@ function M.setup()
       requires = 'p00f/nvim-ts-rainbow',
       config = function()
         local catppuccin_colors = require('catppuccin.palettes').get_palette(config.catppuccin_flavor)
+
         require('nvim-treesitter.configs').setup({
           ensure_installed = 'all',
           highlight = {
@@ -150,7 +150,7 @@ function M.setup()
               catppuccin_colors.teal,
               catppuccin_colors.yellow,
               catppuccin_colors.pink,
-              catppuccin_colors.green
+              catppuccin_colors.sapphire
             }
           }
         })
@@ -167,15 +167,23 @@ function M.setup()
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
-        {
-          'hrsh7th/cmp-vsnip',
-          requires = {
-            'hrsh7th/vim-vsnip'
-          }
-        }
+        'hrsh7th/cmp-vsnip',
+        'hrsh7th/vim-vsnip'
       },
       config = function()
         local cmp = require('cmp')
+        local catppuccin_colors = require('catppuccin.palettes').get_palette(config.catppuccin_flavor)
+
+        local cmp_window_config = nil
+        if config.transparent then
+          vim.cmd('highlight BorderBG guibg=NONE guifg=' .. catppuccin_colors.blue)
+
+          cmp_window_config = cmp.config.window.bordered({
+              winhighlight = 'Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None'
+          })
+        else
+          cmp_window_config = cmp.config.window.bordered()
+        end
 
         cmp.setup({
           snippet = {
@@ -184,19 +192,18 @@ function M.setup()
             end
           },
           window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered()
+            completion = cmp_window_config,
+            documentation = cmp_window_config
           },
           mapping = {
-            ['<PageUp>'] = cmp.mapping.scroll_docs(-4),
-            ['<PageDown>'] = cmp.mapping.scroll_docs(4),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
             ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i' }),
-            ['<CR>'] = cmp.mapping.confirm({ select = false })
+            ['<PageUp>'] = cmp.mapping.scroll_docs(-4),
+            ['<PageDown>'] = cmp.mapping.scroll_docs(4)
           },
           sources = cmp.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'nvim_lsp_signature_help' },
-            { name = 'vsnip' }
+            { name = 'vsnip' },
           }, {
             { name = 'buffer' }
           })
@@ -326,6 +333,34 @@ function M.setup()
         end
       })
     end
+    use({
+      'folke/noice.nvim',
+      requires = {
+        'MunifTanjim/nui.nvim',
+        {
+          'rcarriga/nvim-notify',
+          config = function()
+            require('notify').setup({
+              background_colour = '#000000'
+            })
+          end
+        }
+      },
+      config = function()
+        require('noice').setup({
+          lsp = {
+            override = {
+              ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+              ['vim.lsp.util.stylize_markdown'] = true,
+              ['cmp.entry.get_documentation'] = true
+            }
+          },
+          presets = {
+            lsp_doc_border = true
+          }
+        })
+      end
+    })
   end)
 
   if first_packer_run then
