@@ -31,7 +31,8 @@ local M = {
     'isort',
     'rust_analyzer',
     'rustfmt',
-    'typescript-language-server'
+    'typescript-language-server',
+    'yamllint'
   }, -- Which mason packages to install
 
   mason_lsps = {
@@ -42,7 +43,8 @@ local M = {
 
   nvim_lint_linters = {
     dockerfile = { 'hadolint' },
-    markdown = { 'markdownlint' }
+    markdown = { 'markdownlint' },
+    yaml = { 'yamllint' }
   }, -- Which linters to use, by file type and order of priority
 
   prettier_filetypes = {

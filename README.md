@@ -66,3 +66,4 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - rustfmt for formatting Rust code
 - hadolint for linting Dockerfiles
 - markdownlint for linting Markdown files
+- yamllint for linting YAML files
