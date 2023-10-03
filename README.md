@@ -16,14 +16,21 @@ of either installed using `pyenv` and `fnm` respectively.
 This config is designed for macOS with iTerm 2 and the Terminal.app compatible keymap. Furthermore, it is only tested
 with [Zsh](https://www.zsh.org/) and [Oh My Zsh](https://ohmyz.sh/).
 
-**!! Disclaimer: On macOS you'll need to run `ulimit -n 10240` to avoid getting a "too many open files" error prior to
-first installing this config**
+### **!! Disclaimers:**
+
+- On macOS you'll need to run `ulimit -n 10240` to avoid getting a "too many open files" error prior to
+- Again, on macOS the current homebrew distribution of nvim is broken so you need to build from the main branch yourself
+  or use the 0.10.0 preview
+
+first installing this config\*\*
 
 1. Clone this repository inside of `~/.config/nvim`
 2. Configure it to your likings (see below)
 3. Open nvim and run `:PackerSync`. This may fail, if it does repeat until it doesn't. If you get messages from
    TreeSitter or Mason let them finish.
-4. Enjoy :)
+4. It's possible that TreeSitter errors while compiling. If this happens let everything else finish, restart nvim and
+   run `:TSUninstall all` and then `:TSInstall all`
+5. Enjoy :)
 
 ## Config
 
