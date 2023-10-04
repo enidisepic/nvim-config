@@ -333,7 +333,7 @@ function M.setup()
         end
       })
     end
-    use({
+    --[[ use({
       'folke/noice.nvim',
       requires = {
         'MunifTanjim/nui.nvim'
@@ -352,7 +352,7 @@ function M.setup()
           }
         })
       end
-    })
+    }) ]]--
   end)
 
   if first_packer_run then
