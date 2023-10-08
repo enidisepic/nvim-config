@@ -333,27 +333,7 @@ function M.setup()
         end
       })
     end
-    --[[ use({
-      'folke/noice.nvim',
-      requires = {
-        'MunifTanjim/nui.nvim'
-      },
-      config = function()
-        require('noice').setup({
-          lsp = {
-            override = {
-              ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-              ['vim.lsp.util.stylize_markdown'] = true,
-              ['cmp.entry.get_documentation'] = true
-            }
-          },
-          presets = {
-            lsp_doc_border = true
-          }
-        })
-      end
-    }) ]]--
-  end)
+ end)
 
   if first_packer_run then
     packer.sync()

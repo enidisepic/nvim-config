@@ -1,4 +1,4 @@
-# nvim-config
+#nvim-config
 
 ![Image of the config in action](preview.png)
 
@@ -73,7 +73,7 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - isort for sorting Python imports
 - Black for formatting Python code
 - Prettier for formatting JS/TS/related
-- rustfmt for formatting Rust code
+- ~~rustfmt for formatting Rust code~~ Install rustfmt via rustup
 - hadolint for linting Dockerfiles
 - markdownlint for linting Markdown files
 - yamllint for linting YAML files

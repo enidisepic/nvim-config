@@ -30,7 +30,6 @@ local M = {
     'markdownlint',
     'isort',
     'rust_analyzer',
-    'rustfmt',
     'typescript-language-server',
     'yamllint'
   }, -- Which mason packages to install
