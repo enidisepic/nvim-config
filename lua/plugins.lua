@@ -220,7 +220,23 @@ function M.setup()
             }
           }
 
+          local settings = {}
+
+          if lsp == "rust_analyzer" then
+            settings = {
+              ['rust-analyzer'] = {
+                checkOnSave = {
+                  allFeatures = true,
+                  overrideCommand = {
+                    'cargo', 'clippy', '--workspace', '--message-format=json', '--all-features'
+                  }
+                }
+              }
+            }
+          end
+
           lspconfig[lsp].setup({
+            settings = settings,
             capabilities = capabilities
           })
         end
