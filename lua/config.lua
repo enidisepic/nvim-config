@@ -34,14 +34,12 @@ local M = {
     'yamllint',
     'shellcheck',
     'shfmt',
-    'asm-lsp'
   }, -- Which mason packages to install
 
   mason_lsps = {
     'pyright',
     'rust_analyzer',
     'tsserver',
-    'asm_lsp'
   }, -- Which mason LSPs to use (needed to use the mason LSP names instead of package names)
 
   nvim_lint_linters = {
@@ -80,7 +78,6 @@ local M = {
     'pyright',
     'rust_analyzer',
     'tsserver',
-    'asm_lsp'
   }, -- LSPs to add to the native LSP client (need to be added to mason_tools and/or mason_lsps)
 
   use_wakatime = true, -- If you want to use Wakatime
