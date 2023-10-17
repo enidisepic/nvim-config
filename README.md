@@ -1,4 +1,4 @@
-#nvim-config
+# nvim-config
 
 ![Image of the config in action](preview.png)
 
@@ -9,7 +9,7 @@ It includes essential plugins listed here and some personal preferences and nice
 ## Requirements
 
 To use this config you will need Python and Node.js installed. Support is only guaranteed for the latest stable versions
-of either installed using `pyenv` and `fnm` respectively.
+of either.
 
 ## Usage
 
@@ -18,18 +18,15 @@ with [Zsh](https://www.zsh.org/) and [Oh My Zsh](https://ohmyz.sh/).
 
 ### **!! Disclaimers:**
 
-- On macOS you'll need to run `ulimit -n 10240` to avoid getting a "too many open files" error prior to
-- Again, on macOS the current homebrew distribution of nvim is broken so you need to build from the main branch yourself
-  or use the 0.10.0 preview
-
-first installing this config\*\*
+- On macOS you'll need to run `ulimit -n 10240` to avoid getting a "too many open files" error prior to first installing
+  this config
 
 1. Clone this repository inside of `~/.config/nvim`
 2. Configure it to your likings (see below)
 3. Open nvim and run `:PackerSync`. This may fail, if it does repeat until it doesn't. If you get messages from
    TreeSitter or Mason let them finish.
-4. It's possible that TreeSitter errors while compiling. If this happens let everything else finish, restart nvim and
-   run `:TSUninstall all` and then `:TSInstall all`
+4. It's possible that TreeSitter errors while compiling. Usually this can be ignored. If you're unsure if it all worked
+   just check `:TSInstallInfo`
 5. Enjoy :)
 
 ## Config
@@ -38,32 +35,7 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 
 ## Plugins
 
-- [packer](https://github.com/wbthomason/packer.nvim): my preferred package manager for plugins
-- [catppuccin](https://github.com/catppuccin/nvim): my preferred theme (Frappé flavor)
-- [lualine](https://github.com/nvim-lualine/lualine.nvim): a nice status line at the bottom of thewindow
-- [virt-column](https://github.com/lukas-reineke/virt-column.nvim): virtual column at width 120
-- [mason](https://github.com/williamboman/mason.nvim): package manager for anything not a plugin
-- [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer): automatically install mason packages
-- [mason-lspconfig](https://github.com/williamboman/nvim-lspconfig): nvim-lspconfig compatibility for mason
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): lsp support for nvim
-- [nvim-lint](https://github.com/mfussenegger/nvim-lint): linter support for nvim
-- [formatter](https://github.com/mhartington/formatter.nvim): formatter support for nvim
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter): treesitter for nvim (better highlighting and
-  such)
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp): autocomplete for nvim
-- [vim-sleuth](https://github.com/tpope/vim-sleuth): automatic tab width
-- [markdown-preview](https://github.com/iamcco/markdown-preview.nvim): markdown preview server
-- [lexima](https://github.com/cohama/lexima): automatically close braces
-- [gitsigns](https://github.com/lewis6991/gitsigns.nvim): git blame on the current line
-- [plenary](https://github.com/nvim-lua/plenary.nvim): lua functions for other plugins
-- [todo-comments](https://github.com/folke/todo-comments.nvim): highlight comments starting with TODO
-- [neotest](https://github.com/nvim-neotest/neotest): show test results within nvim
-- [nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker): pick a window
-- [wakatime](https://github.com/wakatime/vim-wakatime): track coding time (optional)
-- [FTerm](https://github.com/numToStr/FTerm.nvim): floating terminal with persistent session
-- [presence](https://github.com/andweeb/presence.nvim): Discord RPC for nvim
-- [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow): rainbow braces for nvim with treesitter
-- [noice](https://github.com/folke/noice.nvim): better UI for messages, cmdline and LSP signatures
+Way too many. Check `lua/plugins.lua`
 
 ## Other
 
@@ -73,7 +45,9 @@ The configuration file can be found in `lua/config.lua`. Options inside the file
 - isort for sorting Python imports
 - Black for formatting Python code
 - Prettier for formatting JS/TS/related
-- ~~rustfmt for formatting Rust code~~ Install rustfmt via rustup
 - hadolint for linting Dockerfiles
 - markdownlint for linting Markdown files
 - yamllint for linting YAML files
+- rustfmt (has to be installed via rustup)
+- ShellCheck for linting Shell scripts
+- shfmt for formatting Shell scripts

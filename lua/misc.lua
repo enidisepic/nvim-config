@@ -17,15 +17,24 @@ function M.setup()
 
   -- Create an autocmd to save, format and lint when leaving insert mode if wanted
   if config.insert_leave_autocmd then
-    vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+    vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
       callback = function()
-        vim.cmd('w')
-
         vim.cmd('FormatWrite')
-        vim.wait(100, function() end)
+      end
+    })
 
+    vim.api.nvim_create_autocmd({ 'User' }, {
+      pattern = 'FormatterPost',
+      callback = function()
         require('lint').try_lint()
       end
+    })
+
+    vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+      callback = function()
+        vim.cmd('up')
+      end,
+      nested = true
     })
   end
 

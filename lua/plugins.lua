@@ -49,14 +49,6 @@ function M.setup()
       end
     })
     use({
-      'lukas-reineke/virt-column.nvim',
-      config = function()
-        vim.opt.colorcolumn = config.virt_column_column
-
-        require('virt-column').setup()
-      end
-    })
-    use({
       'nvim-tree/nvim-tree.lua',
       config = function()
         vim.g.loaded_netrw = true
@@ -66,7 +58,7 @@ function M.setup()
         require('nvim-tree').setup({
           sort_by = 'case_sensitive',
           view = {
-            width = config.nvim_tree_width
+            width = config.side_window_width
           },
           tab = {
             sync = {
@@ -86,6 +78,14 @@ function M.setup()
         vim.api.nvim_feedkeys(
           vim.api.nvim_replace_termcodes('<c-w>w', true, false, true), 'n', false
         )
+      end
+    })
+    use({
+      'lukas-reineke/virt-column.nvim',
+      config = function()
+        require('virt-column').setup({
+          virtcolumn = config.virt_column_column
+        })
       end
     })
 
@@ -112,7 +112,6 @@ function M.setup()
     })
 
     -- Actual coding support
-    use('neovim/nvim-lspconfig')
     use({
       'mfussenegger/nvim-lint',
       config = function()
@@ -163,12 +162,16 @@ function M.setup()
     use({
       'hrsh7th/nvim-cmp',
       requires = {
+        'neovim/nvim-lspconfig',
+
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-vsnip',
-        'hrsh7th/vim-vsnip'
+        'hrsh7th/vim-vsnip',
+
+        'simrat39/inlay-hints.nvim'
       },
       config = function()
         local cmp = require('cmp')
@@ -211,6 +214,9 @@ function M.setup()
 
         local lspconfig = require('lspconfig')
         local cmp_nvim_lsp = require('cmp_nvim_lsp')
+        local inlay_hints = require('inlay-hints')
+
+        inlay_hints.setup()
 
         for _, lsp in ipairs(config.lsps) do
           local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -221,25 +227,76 @@ function M.setup()
           }
 
           local settings = {}
+          local on_attach = function(client, buffer)
+            inlay_hints.on_attach(client, buffer)
+          end
 
-          if lsp == "rust_analyzer" then
+          if lsp == 'rust_analyzer' then
             settings = {
               ['rust-analyzer'] = {
+                check = {
+                  allTargets = false
+                },
                 checkOnSave = {
-                  allFeatures = true,
-                  overrideCommand = {
-                    'cargo', 'clippy', '--workspace', '--message-format=json', '--all-features'
+                  command = 'clippy'
+                },
+                inlayHints = {
+                  enabled = true,
+                  typeHints = {
+                    enable = true
                   }
                 }
               }
             }
+          elseif lsp == 'tsserver' then
+            settings = {
+              typescript = {
+                inlayHints = {
+                  includeInlayParameterNameHints = 'all',
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                  includeInlayFunctionParameterTypeHints = true,
+                  includeInlayVariableTypeHints = true,
+                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                  includeInlayPropertyDeclarationTypeHints = true,
+                  includeInlayFunctionLikeReturnTypeHints = true,
+                  includeInlayEnumMemberValueHints = true,
+                }
+              },
+              javascript = {
+                inlayHints = {
+                  includeInlayParameterNameHints = 'all',
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                  includeInlayFunctionParameterTypeHints = true,
+                  includeInlayVariableTypeHints = true,
+                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                  includeInlayPropertyDeclarationTypeHints = true,
+                  includeInlayFunctionLikeReturnTypeHints = true,
+                  includeInlayEnumMemberValueHints = true,
+                }
+              }
+            }
+          else
+            on_attach = function(_, _) end
           end
 
           lspconfig[lsp].setup({
             settings = settings,
+            on_attach = on_attach,
             capabilities = capabilities
           })
         end
+      end
+    })
+    use({
+      'stevearc/aerial.nvim',
+      config = function()
+        require('aerial').setup({
+          layout = {
+            width = config.side_window_width
+          },
+
+          open_automatic = true
+        })
       end
     })
 
@@ -284,7 +341,6 @@ function M.setup()
     use({
       'nvim-neotest/neotest',
       requires = {
-        'antoinemadec/FixCursorHold.nvim',
         'nvim-neotest/neotest-python'
       },
       config = function()
@@ -349,6 +405,29 @@ function M.setup()
         end
       })
     end
+    use({
+      'nvim-tree/nvim-web-devicons',
+      config = function()
+        require('nvim-web-devicons').setup()
+      end
+    })
+    use({
+      'folke/noice.nvim',
+      requires = {
+        'MunifTanjim/nui.nvim'
+      },
+      config = function()
+        require('noice').setup({
+          lsp = {
+            override = {
+              ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+              ["vim.lsp.util.stylize_markdown"] = true,
+              ["cmp.entry.get_documentation"] = true,
+            },
+          },
+        })
+      end
+    })
  end)
 
   if first_packer_run then

@@ -16,7 +16,7 @@ local M = {
 
   virt_column_column = '120', -- Which column to display the virtual column at
 
-  nvim_tree_width = 40, -- Width of nvim-tree
+  side_window_width = 40, -- Width of nvim-tree and aerial
 
   terminal_height = 15, -- Height of terminal opened with Ctrl + X
 
@@ -31,7 +31,9 @@ local M = {
     'isort',
     'rust_analyzer',
     'typescript-language-server',
-    'yamllint'
+    'yamllint',
+    'shellcheck',
+    'shfmt'
   }, -- Which mason packages to install
 
   mason_lsps = {
@@ -43,7 +45,8 @@ local M = {
   nvim_lint_linters = {
     dockerfile = { 'hadolint' },
     markdown = { 'markdownlint' },
-    yaml = { 'yamllint' }
+    yaml = { 'yamllint' },
+    sh = { 'shellcheck' }
   }, -- Which linters to use, by file type and order of priority
 
   prettier_filetypes = {
@@ -63,6 +66,9 @@ local M = {
     rust = {
       require('formatter.filetypes.rust').rustfmt
     },
+    sh = {
+      require('formatter.filetypes.sh').shfmt
+    },
     ['*'] = {
       require('formatter.filetypes.any').remove_trailing_whitespace
     }
@@ -70,7 +76,8 @@ local M = {
 
   lsps = {
     'pyright',
-    'rust_analyzer'
+    'rust_analyzer',
+    'tsserver'
   }, -- LSPs to add to the native LSP client (need to be added to mason_tools and/or mason_lsps)
 
   use_wakatime = true, -- If you want to use Wakatime
