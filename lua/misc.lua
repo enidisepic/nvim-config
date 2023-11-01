@@ -29,13 +29,6 @@ function M.setup()
         require('lint').try_lint()
       end
     })
-
-    vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-      callback = function()
-        vim.cmd('up')
-      end,
-      nested = true
-    })
   end
 
   -- Fix line wrapping (first character + left arrow -> last character previous line)
@@ -44,21 +37,31 @@ function M.setup()
   -- Check if we want to apply macOS-specific fixes
   local is_mac = config.is_mac == nil and vim.loop.os_uname().sysname == 'Darwin' or config.is_mac
 
-  -- If so, fix Option + Right Arrow
+  -- If so, fix Option + Arrow
   if is_mac then
-    vim.keymap.set('n', 'f', 'w')
+    vim.keymap.set('', '<esc>f', 'w')
+    vim.keymap.set('!', '<esc>f', '<c-o>w')
+    vim.keymap.set('!', '<esc>b', '<c-o>b')
   end
 
   -- Set Page Up/Down to scroll without moving text unless needed in normal mode
-  vim.keymap.set('n', '<PageUp>', '<c-u>')
-  vim.keymap.set('n', '<PageDown>', '<c-d>')
+  vim.keymap.set('n', '<pageup>', '<c-u>')
+  vim.keymap.set('n', '<pagedown>', '<c-d>')
 
   -- Set Esc in terminal mode to leave terminal mode
-  vim.keymap.set('t', '<Esc>', '<c-\\><c-n>')
+  vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 
-  -- Toggle floating term with Ctrl + X
-  vim.keymap.set('n', '<c-x>', '<CMD>lua require("FTerm").toggle()<CR>')
-  vim.keymap.set('t', '<c-x>', '<CMD>lua require("FTerm").toggle()<CR>')
+  -- Toggle floating term with Ctrl + X - (Ctrl +) F
+  vim.keymap.set({ 'n', 't' }, '<c-x>f', '<cmd>lua require("FTerm").toggle()<cr>')
+  vim.keymap.set({ 'n', 't' }, '<c-x><c-f>', '<cmd>lua require("FTerm").toggle()<cr>')
+  -- Open new tab with terminal with Ctrl + X - (Ctrl +) T
+  vim.keymap.set({ 'n', 't' }, '<c-x>t', '<cmd>tabnew | terminal<cr>i')
+  vim.keymap.set({ 'n', 't' }, '<c-x><c-t>', '<cmd>tabnew | terminal<cr>i')
+
+  -- Next tab with tab in normal mode, prev with shift tab, close with 'qq'
+  vim.keymap.set({ 'n', 't' }, '<tab>', '<cmd>tabnext<cr>')
+  vim.keymap.set({ 'n', 't' }, '<s-tab>', '<cmd>tabprevious<cr>')
+  vim.keymap.set({ 'n', 't' }, 'qq', '<cmd>tabclose<cr>')
 end
 
 return M

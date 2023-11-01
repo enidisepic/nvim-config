@@ -139,10 +139,8 @@ function M.setup()
         local catppuccin_colors = require('catppuccin.palettes').get_palette(config.catppuccin_flavor)
 
         require('nvim-treesitter.configs').setup({
-          ensure_installed = 'all',
-          highlight = {
-            enable = true
-          },
+          ensure_installed = config.treesitter_parsers,
+          auto_install = true,
           rainbow = {
             enable = true,
             colors = {

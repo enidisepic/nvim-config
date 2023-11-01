@@ -80,6 +80,34 @@ local M = {
     'tsserver',
   }, -- LSPs to add to the native LSP client (need to be added to mason_tools and/or mason_lsps)
 
+  treesitter_parsers = {
+    'bash',
+    'c',
+    'css',
+    'dockerfile',
+    'gitignore',
+    'html',
+    'javascript',
+    'json',
+    'lua',
+    'markdown',
+    'markdown_inline',
+    'nix',
+    'python',
+    'query',
+    'requirements',
+    'rust',
+    'sql',
+    'ssh_config',
+    'terraform',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'yaml'
+  }, -- Parsers treesitter should install (c, lua, vim, vimdoc, query should always be installed)
+
   use_wakatime = true, -- If you want to use Wakatime
   transparent = true, -- Make nvim transparent (for custom background images and the likes)
   discord_rpc = true -- Use Discord RPC (game status)?
